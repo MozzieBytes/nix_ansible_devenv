@@ -1,0 +1,8 @@
+# direnv
+**/.direnv
+
+# Ansible
+**/*.retry
+
+# Nix
+**/result
