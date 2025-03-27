@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Run Nix format
+nix fmt
