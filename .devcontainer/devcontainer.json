@@ -7,7 +7,13 @@
     },
     "mounts": [
       "source=devcontainer-nix,target=/nix,type=volume",
-      "source=devcontainer-direnv,target=/home/vscode.local/share/direnv,type=volume"
+      "source=devcontainer-direnv,target=/home/vscode/.local/share/direnv,type=volume"
     ],
-    "onCreateCommand": "nix-env --install direnv nix-direnv; sudo chown vscode:vscode /home/vscode/.local/share/direnv; mkdir -p ~/.config/direnv; echo \@source $HOME/.nix-profile/share/nix-direnv/direnvrc\" > ~/.config/direnv/direnvrc; direnv hook bash >> ~/.bashrc"
+    "onCreateCommand": "nix profile install nixpkgs#direnv nixpkgs#nix-direnv; sudo chown vscode:vscode /home/vscode/.local/share/direnv; mkdir -p ~/.config/direnv; echo \"source $HOME/.nix-profile/share/nix-direnv/direnvrc\" > ~/.config/direnv/direnvrc; echo \"export DIRENV_LOG_FORMAT=\" >> ~/.bashrc; direnv hook bash >> ~/.bashrc",
+    "postCreateCommand": "direnv allow",
+    "customizations": {
+      "vscode": {
+        "extensions": ["redhat.ansible"]
+      }
+    }
   }
