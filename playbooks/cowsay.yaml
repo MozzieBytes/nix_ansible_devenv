@@ -1,11 +1,9 @@
----
 - name: Demo Play
   hosts: localhost
   tasks:
     - name: Run cowsay
       ansible.builtin.command: cowsay 'Hello World'
       register: cowsay_output
-
     - name: Display cowsay output
       ansible.builtin.debug:
         var: cowsay_output.stdout_lines
