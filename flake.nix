@@ -37,6 +37,7 @@
               openssh
               python3
               python3Packages.jmespath
+              cowsay
             ]
             ++ treefmtPrograms;
         };
