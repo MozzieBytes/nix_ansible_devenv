@@ -1,0 +1,13 @@
+  {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "ghcr.io/devcontainers/features/nix:1": {
+        "extraNixConfig": "experimental-features = nix-command flakes"
+      }
+    },
+    "mounts": [
+      "source=devcontainer-nix,target=/nix,type=volume",
+      "source=devcontainer-direnv,target=/home/vscode.local/share/direnv,type=volume"
+    ],
+    "onCreateCommand": "nix-env --install direnv nix-direnv; sudo chown vscode:vscode /home/vscode/.local/share/direnv; mkdir -p ~/.config/direnv; echo \@source $HOME/.nix-profile/share/nix-direnv/direnvrc\" > ~/.config/direnv/direnvrc; direnv hook bash >> ~/.bashrc"
+  }
